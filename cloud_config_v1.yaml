@@ -1,0 +1,21 @@
+#cloud-config
+# vim: syntax=yaml
+write_files:
+- encoding: b64
+  content: IyEvYmluL2Jhc2gKd2dldCAtcU8gLSBodHRwczovL3d3dy5tb25nb2RiLm9yZy9zdGF0aWMvcGdwL3NlcnZlci02LjAuYXNjIHwgc3VkbyBhcHQta2V5IGFkZCAtCmVjaG8gImRlYiBbIGFyY2g9YW1kNjQsYXJtNjQgXSBodHRwczovL3JlcG8ubW9uZ29kYi5vcmcvYXB0L3VidW50dSB4ZW5pYWwvbW9uZ29kYi1vcmcvNi4wIG11bHRpdmVyc2UiIHwgc3VkbyB0ZWUgL2V0Yy9hcHQvc291cmNlcy5saXN0LmQvbW9uZ29kYi1vcmctNi4wLmxpc3QKc3VkbyBhcHQgdXBkYXRlCnN1ZG8gYXB0IGluc3RhbGwgLXkgbW9uZ29kYgoK
+  owner: root:root
+  path: /var/tmp/install_mongodb.sh
+  permissions: '0750'
+- encoding: b64
+  content: IyEvYmluL2Jhc2gKc3VkbyBhcHQgdXBkYXRlCnN1ZG8gYXB0IGluc3RhbGwgLXkgcnVieS1mdWxsIHJ1YnktYnVuZGxlciBidWlsZC1lc3NlbnRpYWwKCg==
+  owner: root:root
+  path: /var/tmp/install_ruby.sh
+  permissions: '0750'
+- encoding: b64
+  content: IyEvYmluL2Jhc2gKL3Zhci90bXAvaW5zdGFsbF9ydWJ5LnNoCi92YXIvdG1wL2luc3RhbGxfbW9uZ29kYi5zaAphcHQgaW5zdGFsbCAteSBnaXQKY2QgL29wdApnaXQgY2xvbmUgLWIgbW9ub2xpdGggaHR0cHM6Ly9naXRodWIuY29tL2V4cHJlc3M0Mi9yZWRkaXQuZ2l0CmNob3duIHVidW50dTp1YnVudHUgLVIgL29wdC9yZWRkaXQKY2QgL29wdC9yZWRkaXQKc3VkbyAtdSB1YnVudHUgL3Vzci9iaW4vYnVuZGxlIGluc3RhbGwKc3VkbyAtdSB1YnVudHUgL3Vzci9sb2NhbC9iaW4vcHVtYSAtZAoK
+  owner: root:root
+  path: /var/tmp/deploy.sh
+  permissions: '0750'
+
+runcmd:
+ - /var/tmp/deploy.sh
