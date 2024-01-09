@@ -1,7 +1,7 @@
 {
     "yc_catalog_id": "demo_catalog_id",
     "yc_subnet_id": "demo_subnet_id",
-    "svc_account_key_file": "demo_key_id",
+    "svc_account_key_file": "demo_key.json",
     "src_image_family": "demo_os_family",
     "inst_cpu_num": "4",
     "inst_disk_size": "20"
