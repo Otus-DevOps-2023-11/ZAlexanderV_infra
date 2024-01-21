@@ -28,8 +28,19 @@ resource "yandex_lb_target_group" "reddit-tg" {
   region_id = "ru-central1"
 
   target {
-    address   = yandex_compute_instance.app.network_interface.0.ip_address
+    address   = yandex_compute_instance.app[0].network_interface.0.ip_address
     subnet_id = var.subnet_id
   }
+
+  target {
+    address   = yandex_compute_instance.app[1].network_interface.0.ip_address
+    subnet_id = var.subnet_id
+  }
+  
+  target {
+    address   = yandex_compute_instance.app[2].network_interface.0.ip_address
+    subnet_id = var.subnet_id
+  }
+
 
 }
