@@ -1,8 +1,0 @@
-cloud_id                 = "b1gdpe4f6jqggbrpqgsr"
-folder_id                = "b1gs4m14eth4n4rjck3k"
-zone                     = "ru-central1-b"
-image_id                 = "fd8485k8gndv3sq491jo"
-subnet_id                = "e2l604hbct2io04pgcn5"
-service_account_key_file = "/home/sterh/yandex_svc_key.json"
-private_key_path         = "/home/sterh/.ssh/yc_key_priv"
-public_key_path          = "/home/sterh/.ssh/yc_key_pub"
