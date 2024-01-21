@@ -1,12 +1,11 @@
-#terraform {
-#  required_providers {
-#    yandex = {
-#      source = "yandex-cloud/yandex"
-#      version = "0.94.0"
-#    }
-#  }
-#  required_version = ">= 0.13.0"
-#}
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+  required_version = ">= 0.13.0"
+}
 
 provider "yandex" {
   service_account_key_file = var.service_account_key_file
@@ -15,8 +14,20 @@ provider "yandex" {
   zone                     = var.zone
 }
 
+resource "yandex_vpc_network" "app-network" {
+  name = "reddit-app-network"
+  folder_id = var.folder_id
+}
+
+resource "yandex_vpc_subnet" "app-subnet" {
+  name           = "reddit-app-subnet"
+  zone           = "ru-central1-b"
+  network_id     = "${yandex_vpc_network.app-network.id}"
+  v4_cidr_blocks = ["192.168.10.0/24"]
+}
+
 resource "yandex_compute_instance" "app" {
-  count = 3
+  count = 1
   name  = "reddit-app-${count.index}"
   zone  = var.zone
 
@@ -34,7 +45,7 @@ resource "yandex_compute_instance" "app" {
 
   network_interface {
     # Указан id подсети default-ru-central1-a
-    subnet_id = var.subnet_id
+    subnet_id = yandex_vpc_subnet.app-subnet.id
     nat       = true
   }
 
