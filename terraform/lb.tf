@@ -27,20 +27,12 @@ resource "yandex_lb_target_group" "reddit-tg" {
   name      = "reddit-target-group"
   region_id = "ru-central1"
 
-  target {
-    address   = yandex_compute_instance.app[0].network_interface.0.ip_address
-    subnet_id = var.subnet_id
+  dynamic "target" {
+    for_each = yandex_compute_instance.app.*.network_interface.0.ip_address
+    content {
+      subnet_id = var.subnet_id
+      address   = target.value
+    }
   }
-
-  target {
-    address   = yandex_compute_instance.app[1].network_interface.0.ip_address
-    subnet_id = var.subnet_id
-  }
-
-  target {
-    address   = yandex_compute_instance.app[2].network_interface.0.ip_address
-    subnet_id = var.subnet_id
-  }
-
 
 }
