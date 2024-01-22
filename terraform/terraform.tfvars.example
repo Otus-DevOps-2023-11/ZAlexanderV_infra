@@ -1,0 +1,8 @@
+cloud_id                 = "b1gdfds"
+folder_id                = "b1gasdd"
+zone                     = "ru-central1-a"
+image_id                 = "fdffff"
+subnet_id                = "e2asdf"
+service_account_key_file = "files/svc_key.json"
+private_key_path         = "files/yc_key.priv"
+public_key_path          = "files/yc_key.pub"
