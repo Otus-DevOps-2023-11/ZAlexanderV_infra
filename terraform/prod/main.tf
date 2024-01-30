@@ -27,5 +27,4 @@ module "app" {
   app_disk_image   = var.app_disk_image
   subnet_id        = var.subnet_id
   private_key_path = var.private_key_path
-  env_val_database = var.env_database
 }
