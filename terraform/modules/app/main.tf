@@ -40,14 +40,14 @@ resource "yandex_compute_instance" "app" {
   provisioner "remote-exec" {
     script = "../files/deploy.sh"
   }
-#  provisioner "remote-exec" {
-#    inline = [
-#      "sleep 60",
-#      "export DATABASE_URL=${var.env_val_database}",
-#      "sudo sed -i 's|ExecStart=/bin/bash -lc.*|ExecStart=/bin/bash -lc \"DATABASE_URL=${var.env_val_database}:27017 puma\"|' /etc/systemd/system/puma.service",
-#      "sudo systemctl daemon-reload",
-#      "sudo systemctl restart puma",
-#    ]
-#  }
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 60",
+      "export DATABASE_URL=${var.env_val_database}",
+      "sudo sed -i 's|ExecStart=/bin/bash -lc.*|ExecStart=/bin/bash -lc \"DATABASE_URL=${var.env_val_database}:27017 puma\"|' /etc/systemd/system/puma.service",
+      "sudo systemctl daemon-reload",
+      "sudo systemctl restart puma",
+    ]
+  }
 
 }

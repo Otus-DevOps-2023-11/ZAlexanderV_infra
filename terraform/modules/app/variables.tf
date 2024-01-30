@@ -16,3 +16,8 @@ variable "app_disk_image" {
   description = "Disk image for reddit app"
   default     = "fd8hiodo16svum0oggif"
 }
+
+variable "env_val_database" {
+  description = "Environment variable for database"
+  default     = "reddit-db.ru-central1.internal"
+}
