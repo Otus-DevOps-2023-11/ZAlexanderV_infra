@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+}
+
 resource "yandex_compute_instance" "db" {
   name = "reddit-db"
   labels = {
@@ -17,10 +25,23 @@ resource "yandex_compute_instance" "db" {
 
   network_interface {
     subnet_id = yandex_vpc_subnet.app-subnet.id
-    nat = true
+    nat       = true
   }
 
   metadata = {
-  ssh-keys = "ubuntu:${file(var.public_key_path)}"
+    ssh-keys = "ubuntu:${file(var.public_key_path)}"
   }
+
+  connection {
+    type        = "ssh"
+    host        = self.network_interface.0.nat_ip_address
+    user        = "ubuntu"
+    agent       = false
+    private_key = file(var.private_key_path)
+  }
+  provisioner "remote-exec" {
+    script = "../files/config_mongo.sh"
+  }
+
+
 }

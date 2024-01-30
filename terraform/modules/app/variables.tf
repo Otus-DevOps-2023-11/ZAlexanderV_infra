@@ -12,7 +12,7 @@ variable "subnet_id" {
   description = "Subnet"
 }
 
-variable app_disk_image {
+variable "app_disk_image" {
   description = "Disk image for reddit app"
-  default = "fd8hiodo16svum0oggif"
+  default     = "fd8hiodo16svum0oggif"
 }
