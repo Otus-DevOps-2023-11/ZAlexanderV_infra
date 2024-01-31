@@ -1,16 +1,24 @@
-#terraform {
-#  required_providers {
-#    yandex = {
-#      source = "yandex-cloud/yandex"
-#    }
-#  }
-#}
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+}
 
 resource "yandex_compute_instance" "db" {
   name = "reddit-db"
-  labels = {
-    tags = "reddit-db"
-  }
+
+
+  labels = merge(
+    var.instance_tags,
+    {
+      tags = "reddit-db"
+    },
+  )
+
+  folder_id = var.folder_id
+  zone      = var.zone
 
   resources {
     cores  = 2
@@ -40,7 +48,7 @@ resource "yandex_compute_instance" "db" {
     private_key = file(var.private_key_path)
   }
   provisioner "remote-exec" {
-    script = "../files/config_mongo.sh"
+    script = "${path.module}/files/config_mongo.sh"
   }
 
 

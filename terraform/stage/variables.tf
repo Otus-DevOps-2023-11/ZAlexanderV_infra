@@ -16,6 +16,8 @@ variable "image_id" {
 }
 variable "subnet_id" {
   description = "Subnet"
+  type        = string
+  default     = "e9bgt4su1ihc5selb1pp"
 }
 variable "service_account_key_file" {
   description = "key .json"
@@ -30,11 +32,11 @@ variable "app_count" {
 }
 variable "app_disk_image" {
   description = "Disk image for reddit app"
-  default     = "fd8ehhhl0p67uearc16b"
+  default     = "fd8hiodo16svum0oggif"
 }
 variable "db_disk_image" {
   description = "Disk image for reddit app"
-  default     = "fd8bimueg14j9p9o4oa4"
+  default     = "fd8p9bl3ifgahtb51b7p"
 }
 variable "env_database" {
   description = "Disk image for reddit app"
