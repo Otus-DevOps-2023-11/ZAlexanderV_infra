@@ -2,14 +2,12 @@ variable "vpc_network_name" {
   # Описание переменной
   description = "YC VPC Network name"
   default     = "app-network"
-  type        = string
 }
 
 variable "vpc_subnet_name" {
   # Описание переменной
   description = "YC Subnet name"
   default     = "app-subnet"
-  type        = string
 }
 
 variable "zone" {
