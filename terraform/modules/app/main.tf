@@ -1,11 +1,3 @@
-#terraform {
-#  required_providers {
-#    yandex = {
-#      source = "yandex-cloud/yandex"
-#    }
-#  }
-#}
-
 resource "yandex_compute_instance" "app" {
   name = "reddit-app"
 
@@ -32,21 +24,27 @@ resource "yandex_compute_instance" "app" {
     ssh-keys = "ubuntu:${file(var.public_key_path)}"
   }
 
+  connection {
+    type        = "ssh"
+    host        = self.network_interface.0.nat_ip_address
+    user        = "ubuntu"
+    agent       = false
+    private_key = file(var.private_key_path)
+  }
+
   provisioner "file" {
-    source      = "../files/puma.service"
+    source      = "${path.module}/files/puma.service"
     destination = "/tmp/puma.service"
   }
 
   provisioner "remote-exec" {
-    script = "../files/deploy.sh"
-  }
-  provisioner "remote-exec" {
     inline = [
       "sleep 60",
-      "export DATABASE_URL=${var.env_val_database}",
-      "sudo sed -i 's|ExecStart=/bin/bash -lc.*|ExecStart=/bin/bash -lc \"DATABASE_URL=${var.env_val_database}:27017 puma\"|' /etc/systemd/system/puma.service",
+      "sudo systemctl stop reddit-app.service",
+      "sudo mv /tmp/puma.service /etc/systemd/system/reddit-app.service",
+      "sudo sed -i 's/ENV_DATABASE_URL.*/Environment=\"DATABASE_URL=${var.env_val_database}:27017\"/' /etc/systemd/system/reddit-app.service",
       "sudo systemctl daemon-reload",
-      "sudo systemctl restart puma",
+      "sudo systemctl start reddit-app.service",
     ]
   }
 

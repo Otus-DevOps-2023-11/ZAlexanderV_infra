@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  vars_prompt:
+    - name: convert_file
+      prompt: enter file to convert
+      private: no
+
+  tasks:
+    - shell: cat {{ convert_file }}
+      register: result
+    - set_fact:
+        converted: "{{ result.stdout | from_yaml | to_json }}"
+    - copy:
+        content: "{{ converted }}"
+        dest:   conversion_result.json
