@@ -39,3 +39,4 @@
 Запуск базового образа
 - перейти в папку ansible
 - выполнить ```ansible-playbook -i inventory clone.yml```
+- выполнить ```dyn_inventory.py [--list|--host]  ```
