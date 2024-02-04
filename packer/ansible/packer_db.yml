@@ -1,0 +1,17 @@
+---
+- name: Install packages for app server
+  hosts: dbs
+  become: true
+
+  tasks:
+    - name: Install packages
+      apt:
+        name: "{{ item }}"
+      with_items:
+        - mongodb
+
+    - name: Start MongoDB
+      systemd:
+        name: mongodb
+        enabled: true
+        state: "started"

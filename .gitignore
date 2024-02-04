@@ -3,6 +3,7 @@ packer/variables.json
 *.tfstate.*.backup
 *.tfstate.backup
 *.tfvars
+*.pkrvars.hcl
 .terraform/
 andible/venv/
 *.retry

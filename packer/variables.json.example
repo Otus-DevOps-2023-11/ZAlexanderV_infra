@@ -4,5 +4,6 @@
     "svc_account_key_file": "demo_key.json",
     "src_image_family": "demo_os_family",
     "inst_cpu_num": "4",
-    "inst_disk_size": "20"
+    "inst_disk_size": "20",
+    "inst_subnet_id": "e9p"
 }

@@ -14,4 +14,6 @@
 
   handlers:
     - name: restart mongodb
-      service: name=mongodb state=restarted
+      service:
+        name: mongodb
+        state: restarted
