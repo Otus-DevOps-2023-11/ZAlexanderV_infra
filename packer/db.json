@@ -22,7 +22,7 @@
         {
             "type": "shell",
             "pause_before": 10,
-            "command": "sudo apt update"
+            "inline": ["sudo apt update"]
         },
         {
             "type": "ansible",

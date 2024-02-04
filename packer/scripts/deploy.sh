@@ -3,6 +3,7 @@ if [ -z ${APP_PATH+x} ]; then
     APP_PATH="/home/ubuntu"
 fi
 cd $APP_PATH
+export DEBIAN_FRONTEND="noninteractive"
 sudo apt update
 sudo apt install -y -q git
 git clone -b monolith https://github.com/express42/reddit.git
