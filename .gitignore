@@ -1,9 +1,11 @@
+.vscode/*
 packer/variables.json
 *.tfstate
 *.tfstate.*.backup
 *.tfstate.backup
 *.tfvars
 *.pkrvars.hcl
+*.lock.hcl
 .terraform/
-andible/venv/
+ansible/venv/
 *.retry
