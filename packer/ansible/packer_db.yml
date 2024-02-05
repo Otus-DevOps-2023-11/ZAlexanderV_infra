@@ -6,9 +6,7 @@
   tasks:
     - name: Install packages
       apt:
-        name: "{{ item }}"
-      with_items:
-        - mongodb
+        name: ["mongodb"]
 
     - name: Start MongoDB
       systemd:
