@@ -5,19 +5,28 @@
             "service_account_key_file": "{{user `svc_account_key_file`}}",
             "folder_id": "{{user `yc_catalog_id`}}",
             "source_image_family": "{{user `src_image_family`}}",
-            "image_name": "reddit-db-base-{{timestamp}}",
+            "image_name": "reddit-app-base-{{timestamp}}",
             "image_family": "reddit-base",
             "ssh_username": "ubuntu",
-            "subnet_id": "e9bgt4su1ihc5selb1pp",
+            "subnet_id": "{{user `inst_subnet_id`}}",
             "use_ipv4_nat": true,
-            "platform_id": "standard-v1"
+            "platform_id": "standard-v1",
+            "labels" : {
+               "image": "{{user `src_image_family`}}",
+               "timestamp": "{{timestamp}}"
+            }
+
         }
     ],
     "provisioners": [
         {
             "type": "shell",
-            "script": "scripts/install_mongodb.sh",
-            "execute_command": "sudo {{.Path}}"
+            "pause_before": 10,
+            "inline": ["sudo apt update"]
+        },
+        {
+            "type": "ansible",
+            "playbook_file": "ansible/packer_db.yml"
         }
     ]
 }

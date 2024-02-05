@@ -8,25 +8,26 @@
             "image_name": "reddit-app-base-{{timestamp}}",
             "image_family": "reddit-base",
             "ssh_username": "ubuntu",
-            "subnet_id": "{{user `inst_subnet_id`}}",
+            "subnet_id": "e9bgt4su1ihc5selb1pp",
             "use_ipv4_nat": true,
-            "platform_id": "standard-v1",
-            "labels" : {
-               "image": "{{user `src_image_family`}}",
-               "timestamp": "{{timestamp}}"
-            }
-
+            "platform_id": "standard-v1"
         }
     ],
     "provisioners": [
         {
-            "type": "shell",
-            "pause_before": 10,
-            "inline": ["sudo apt update"]
+            "type": "file",
+            "source": "files/reddit-app.service",
+            "destination": "/var/tmp/reddit-app.service"
         },
         {
-            "type": "ansible",
-            "playbook_file": "ansible/packer_app.yml"
+            "type": "shell",
+            "script": "scripts/install_ruby.sh",
+            "execute_command": "sudo {{.Path}}"
+        },
+        {
+            "type": "shell",
+            "script": "scripts/deploy.sh",
+            "execute_command": "{{.Path}}"
         }
     ]
 }

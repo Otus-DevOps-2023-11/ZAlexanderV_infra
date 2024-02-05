@@ -1,0 +1,14 @@
+---
+- name: Install packages for app server
+  hosts: dbs
+  become: true
+
+  tasks:
+    - name: Install packages
+      apt:
+        name: "{{ item }}"
+      with_items:
+        - git
+        - ruby-full
+        - ruby-bundler
+        - build-essential
