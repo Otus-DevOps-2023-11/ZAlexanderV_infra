@@ -3,6 +3,7 @@
 - name: Install packages
   ansible.builtin.apt:
     name: ["mongodb"]
+    state: latest
 
 - name: Change mongo config file
   ansible.builtin.template:

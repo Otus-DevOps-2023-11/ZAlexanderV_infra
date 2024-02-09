@@ -3,6 +3,7 @@
 - name: Install packages
   ansible.builtin.apt:
       name: ["git", "ruby-full", "ruby-bundler", "build-essential"]
+      state: latest
 
 - name: Add unit file for Reddit-app
   ansible.builtin.copy:
