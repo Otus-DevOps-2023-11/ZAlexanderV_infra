@@ -1,4 +1,6 @@
 # ZAlexanderV_infra
+![example workflow](https://github.com/Otus-DevOps-2023-11/ZAlexanderV_infra/actions/workflows/run-tests.yml/badge.svg)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 ### ДЗ№2
 В рамках этого задания были выполнены задачи
  - развёртывание виртуальных машин в облаке Yandex
