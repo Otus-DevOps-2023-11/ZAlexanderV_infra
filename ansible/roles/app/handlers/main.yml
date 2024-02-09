@@ -1,0 +1,6 @@
+---
+# handlers file for app
+- name: reload reddit-app
+  systemd:
+    name: reddit-app
+    enabled: yes

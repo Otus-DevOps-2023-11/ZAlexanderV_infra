@@ -32,11 +32,11 @@ variable "app_count" {
 }
 variable "app_disk_image" {
   description = "Disk image for reddit app"
-  default     = "fd8hiodo16svum0oggif"
+  default     = "fd81d7hjkbt44tall2r7"
 }
 variable "db_disk_image" {
   description = "Disk image for reddit app"
-  default     = "fd8p9bl3ifgahtb51b7p"
+  default     = "fd8otnm61ud8k6juu694"
 }
 variable "env_database" {
   description = "Disk image for reddit app"

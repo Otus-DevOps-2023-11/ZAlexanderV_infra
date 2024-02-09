@@ -23,3 +23,11 @@ variable "yc_folder_id" {
   description = "YC Folder ID"
   default     = null
 }
+
+variable "service_account_key_file" {
+  description = "YC service acccount file json format"
+}
+
+variable "cloud_id" {
+  description = "YC Cloud ID"
+}

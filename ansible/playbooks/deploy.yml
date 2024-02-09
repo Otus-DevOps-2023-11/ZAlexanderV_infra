@@ -20,10 +20,10 @@
         state: present
         chdir: /home/ubuntu/reddit
 
-    - name: Start Puma
+    - name: Start Reddit App
       become: true
       systemd:
-        name: puma
+        name: reddit-app.service
         state: started
         enabled: yes
 

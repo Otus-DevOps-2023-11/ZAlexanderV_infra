@@ -7,12 +7,14 @@
             "source_image_family": "{{user `src_image_family`}}",
             "image_name": "reddit-app-base-{{timestamp}}",
             "image_family": "reddit-base",
+            "image_description": "Application image",
             "ssh_username": "ubuntu",
             "subnet_id": "{{user `inst_subnet_id`}}",
             "use_ipv4_nat": true,
             "platform_id": "standard-v1",
-            "labels" : {
+            "image_labels" : {
                "image": "{{user `src_image_family`}}",
+               "component": "application",
                "timestamp": "{{timestamp}}"
             }
 
