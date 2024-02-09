@@ -1,0 +1,7 @@
+profile: min
+exclude_paths:
+  - ansible/roles/jdauphant.nginx
+
+mock_roles:
+  - ansible/roles/app
+  - ansible/roles/db
