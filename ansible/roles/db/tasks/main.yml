@@ -15,7 +15,7 @@
   systemd:
     name: mongodb
     enabled: true
-    state: "started"
+    state: started
 
 - name: Show info about the env this host belongs to
   debug:
