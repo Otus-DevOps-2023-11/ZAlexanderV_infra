@@ -1,22 +1,22 @@
 ---
 # tasks file for db
 - name: Install packages
-  apt:
+  ansible.builtin.apt:
     name: ["mongodb"]
 
 - name: Change mongo config file
-  template:
+  ansible.builtin.template:
     src: mongod.conf.j2
     dest: /etc/mongodb.conf
     mode: 0644
   notify: restart mongodb
 
 - name: Start MongoDB
-  systemd:
+  ansible.builtin.systemd:
     name: mongodb
     enabled: true
     state: started
 
 - name: Show info about the env this host belongs to
-  debug:
-    msg: "This host is in {{ env }} environment!!!"
+  ansible.builtin.debug:
+    msg: "This host is in {{ db_env }} environment!!!"
