@@ -16,11 +16,14 @@
   import_playbook: db.yml
   vars:
     pb_mongo_bind_ip: "{{ hostvars['dbN1']['ansible_default_ipv4']['address'] }}"
+
 - name: Include app setup import_playbook
   import_playbook: app.yml
   vars:
     db_host: "{{ hostvars['dbN1']['ansible_default_ipv4']['address'] }}"
+
 - name: Include playbook to deploy app
   import_playbook: deploy.yml
+
 - name: Include playbook to create users
   import_playbook: users.yml
