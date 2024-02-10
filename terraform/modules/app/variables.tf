@@ -37,3 +37,11 @@ variable "env_val_database" {
   description = "Environment variable for database"
   default     = "reddit-db.ru-central1.internal"
 }
+
+variable "service_account_key_file" {
+  description = "YC service acccount file json format"
+}
+
+variable "cloud_id" {
+  description = "YC Cloud ID"
+}

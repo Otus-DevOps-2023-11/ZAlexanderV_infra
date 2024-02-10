@@ -1,0 +1,7 @@
+---
+# handlers file for app
+- name: reload reddit-app
+  systemd:
+    name: reddit-app.service
+    enabled: yes
+    state: restarted
