@@ -4,21 +4,22 @@
     keyserver: keyserver.ubuntu.com
   tags: install
 
-- name: Add APT repository
-  apt_repository:
-    repo: deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse
-    state: present
-  tags: install
+#- name: Add APT repository
+#  apt_repository:
+#    repo: deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse
+#    state: present
+#  tags: install
 
 - name: Install mongodb package
   apt:
-    name: mongodb-org
+    name: mongodb
     state: present
+    update_cache: true
   tags: install
 
 - name: Configure service supervisor
   systemd:
-    name: mongod
+    name: mongodb
     enabled: yes
     state: started
   tags: install
