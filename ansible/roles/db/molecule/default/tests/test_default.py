@@ -11,6 +11,9 @@ def test_mongo_running_and_enabled(host):
     assert mongo.is_running
     assert mongo.is_enabled
 
+def test_mongo_listen(host):
+    assert host.socket("tcp://0.0.0.0:27017").is_listening
+
 # check if configuration file contains the required line
 def test_config_file(host):
     config_file = host.file('/etc/mongodb.conf')
