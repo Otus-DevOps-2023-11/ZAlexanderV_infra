@@ -1,7 +1,7 @@
 ---
 - name: Change mongo config file
   template:
-    src: templates/mongod.conf.j2
-    dest: /etc/mongod.conf
+    src: templates/mongodb.conf.j2
+    dest: /etc/mongodbconf
     mode: 0644
   notify: restart mongodb

@@ -1,7 +1,7 @@
 ---
 # handlers file for app
-- name: reload reddit-app
+- name: reload puma
   systemd:
-    name: reddit-app.service
+    name: puma.service
     enabled: yes
     state: restarted

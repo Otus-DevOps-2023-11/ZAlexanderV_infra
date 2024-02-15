@@ -2,6 +2,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox do |v|
     v.memory = 4096
+    v.cpus = 2
   end
 
   config.vm.define "dbserver" do |db|
@@ -29,11 +30,18 @@ Vagrant.configure("2") do |config|
       ansible.groups = {
       "app" => ["appserver"],
       "app:vars" => { "db_host" => "192.168.56.10",
-                      "env" => "staging"                           
+                      "env" => "staging"
                      }
       }
       ansible.extra_vars = {
-        "deploy_user" => "ubuntu"
+        "deploy_user" => "ubuntu",
+        "nginx_sites": {
+          "default": [
+            "listen 80",
+            "server_name \"reddit\"",
+            "location / { proxy_pass http://127.0.0.1:9292; }"
+          ]
+        }
       }
     end
   end

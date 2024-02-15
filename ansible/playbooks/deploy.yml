@@ -1,9 +1,37 @@
 - name: Deploy App
   hosts: app
+  become: true
   vars:
+    mongo_bind_ip: 0.0.0.0
+    db_host: 192.168.56.10
     deploy_user: appuser
 
   tasks:
+    - name: Check for git
+      ansible.builtin.apt:
+        name: git
+        state: latest
+
+    - name: Verify  {{ deploy_user }} user
+      ansible.builtin.user:
+        name: "{{ deploy_user }}"
+        group: "{{ deploy_user }}"
+        state: present
+
+    - name: Create APP folder
+      ansible.builtin.file:
+        path: /home/{{ deploy_user }}/reddit
+        state: directory
+        owner: "{{ deploy_user }}"
+        group: "{{ deploy_user }}"
+
+    - name: Fetch the latest version of application code
+      git:
+        repo: 'https://github.com/express42/reddit.git'
+        dest: "/home/{{ deploy_user }}/reddit"
+        version: monolith
+      notify: restart puma
+
     - name: Fetch the latest version of application code
       git:
         repo: 'https://github.com/express42/reddit.git'
