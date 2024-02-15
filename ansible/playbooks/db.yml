@@ -1,6 +1,6 @@
 ---
 - name: Configure MongoDB
-  hosts: dbs
+  hosts: db
   become: true
   vars:
       pb_mongo_bind_ip: 0.0.0.0

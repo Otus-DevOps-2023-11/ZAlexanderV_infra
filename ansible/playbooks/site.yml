@@ -1,29 +1,5 @@
 ---
-- hosts: dbs
-  tasks:
-    - name: Gather facts from db servers
-      ansible.builtin.setup:
-        gather_subset:
-          - '!all'
-          - default_ipv4
-
-    - name: Print DB internal IP
-      ansible.builtin.debug:
-        msg: "{{ hostvars['dbN1']['ansible_default_ipv4']['address'] }}"
-      run_once: true
-
-- name: Include playbook to setup Database
-  import_playbook: db.yml
-  vars:
-    pb_mongo_bind_ip: "{{ hostvars['dbN1']['ansible_default_ipv4']['address'] }}"
-
-- name: Include app setup import_playbook
-  import_playbook: app.yml
-  vars:
-    db_host: "{{ hostvars['dbN1']['ansible_default_ipv4']['address'] }}"
-
-- name: Include playbook to deploy app
-  import_playbook: deploy.yml
-
-- name: Include playbook to create users
-  import_playbook: users.yml
+- import_playbook: base.yml
+- import_playbook: db.yml
+- import_playbook: app.yml
+- import_playbook: deploy.yml
